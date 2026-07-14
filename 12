@@ -1,0 +1,57 @@
+// Clase abstracta
+abstract class Documento {
+
+    // Método plantilla (Template Method)
+    public final void procesar() {
+        abrir();
+        formatear();
+        guardar();
+    }
+
+    // Métodos concretos
+    public void abrir() {
+        System.out.println("Abriendo documento...");
+    }
+
+    public void guardar() {
+        System.out.println("Guardando documento...");
+    }
+
+    // Método abstracto
+    public abstract void formatear();
+}
+
+// Subclase DocumentoPDF
+class DocumentoPDF extends Documento {
+
+    @Override
+    public void formatear() {
+        System.out.println("Formateando documento como PDF.");
+    }
+}
+
+// Subclase DocumentoHTML
+class DocumentoHTML extends Documento {
+
+    @Override
+    public void formatear() {
+        System.out.println("Formateando documento como HTML.");
+    }
+}
+
+// Clase principal
+public class Main {
+    public static void main(String[] args) {
+
+        Documento pdf = new DocumentoPDF();
+        Documento html = new DocumentoHTML();
+
+        System.out.println("=== Procesando PDF ===");
+        pdf.procesar();
+
+        System.out.println();
+
+        System.out.println("=== Procesando HTML ===");
+        html.procesar();
+    }
+}
