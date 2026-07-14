@@ -1,0 +1,29 @@
+import java.util.Arrays;
+
+public class ArraysEjemplo {
+    public static void main(String[] args) {
+
+        int[] numeros = {8, 3, 10, 1, 6, 2, 9};
+
+        System.out.println("Array original: " + Arrays.toString(numeros));
+
+        Arrays.sort(numeros);
+        System.out.println("Array ordenado: " + Arrays.toString(numeros));
+
+        int elemento = 6;
+        int posicion = Arrays.binarySearch(numeros, elemento);
+
+        if (posicion >= 0) {
+            System.out.println("El elemento " + elemento + " se encuentra en la posicion: " + posicion);
+        } else {
+            System.out.println("El elemento " + elemento + " no se encuentra en el array.");
+        }
+
+        int[] copia = Arrays.copyOf(numeros, 3);
+        System.out.println("Primeros 3 elementos: " + Arrays.toString(copia));
+
+        int[] relleno = new int[5];
+        Arrays.fill(relleno, 0);
+        System.out.println("Array rellenado con 0: " + Arrays.toString(relleno));
+    }
+}
