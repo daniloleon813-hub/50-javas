@@ -1,0 +1,45 @@
+public class Main {
+
+    static class Libro {
+
+        private String titulo;
+        private String autor;
+        private int anio;
+
+        public Libro(String titulo, String autor, int anio) {
+            this.titulo = titulo;
+            this.autor = autor;
+            this.anio = anio;
+        }
+
+        public String getTitulo() {
+            return titulo;
+        }
+
+        public String getAutor() {
+            return autor;
+        }
+
+        public int getAnio() {
+            return anio;
+        }
+
+        public void mostrarInfo() {
+            System.out.println("Título: " + titulo);
+            System.out.println("Autor: " + autor);
+            System.out.println("Año: " + anio);
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Libro libro1 = new Libro("Cien años de soledad", "Gabriel García Márquez", 1967);
+        Libro libro2 = new Libro("Don Quijote", "Miguel de Cervantes", 1605);
+        Libro libro3 = new Libro("El Principito", "Antoine de Saint-Exupéry", 1943);
+
+        libro1.mostrarInfo();
+        libro2.mostrarInfo();
+        libro3.mostrarInfo();
+    }
+}
