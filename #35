@@ -1,0 +1,78 @@
+/**
+ * Representa un estudiante con su nombre y edad.
+ */
+public class Estudiante {
+
+    public static final int EDAD_MINIMA = 0;
+
+    private String nombre;
+    private int edad;
+
+    /**
+     * Crea un estudiante con el nombre y la edad indicados.
+     *
+     * @param nombre Nombre del estudiante.
+     * @param edad Edad del estudiante.
+     */
+    public Estudiante(String nombre, int edad) {
+        this.nombre = nombre;
+        setEdad(edad);
+    }
+
+    /**
+     * Devuelve el nombre del estudiante.
+     *
+     * @return Nombre del estudiante.
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * Cambia el nombre del estudiante.
+     *
+     * @param nombre Nuevo nombre.
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * Devuelve la edad del estudiante.
+     *
+     * @return Edad del estudiante.
+     */
+    public int getEdad() {
+        return edad;
+    }
+
+    /**
+     * Cambia la edad del estudiante.
+     *
+     * @param edad Nueva edad.
+     * @throws IllegalArgumentException si la edad es negativa.
+     */
+    public void setEdad(int edad) {
+        validarEdad(edad);
+        this.edad = edad;
+    }
+
+    /**
+     * Muestra la informacion del estudiante.
+     */
+    public void mostrarDatos() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Edad: " + edad);
+    }
+
+    private void validarEdad(int edad) {
+        if (edad < EDAD_MINIMA) {
+            throw new IllegalArgumentException("La edad no puede ser negativa.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Estudiante estudiante = new Estudiante("Daniel", 23);
+        estudiante.mostrarDatos();
+    }
+}
