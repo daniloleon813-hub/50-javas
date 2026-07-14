@@ -1,0 +1,132 @@
+// Excepción personalizada
+class EmptyStackException extends RuntimeException {
+    public EmptyStackException(String mensaje) {
+        super(mensaje);
+    }
+}
+
+// Clase genérica Pila<T>
+class Pila<T> {
+
+    private Object[] elementos;
+    private int size;
+
+    public Pila() {
+        elementos = new Object[5];
+        size = 0;
+    }
+
+    // Agregar elemento
+    public void push(T elemento) {
+        if (size == elementos.length) {
+            crecer();
+        }
+        elementos[size++] = elemento;
+    }
+
+    // Eliminar y retornar el último elemento
+    @SuppressWarnings("unchecked")
+    public T pop() {
+        if (isEmpty()) {
+            throw new EmptyStackException("La pila está vacía.");
+        }
+
+        T elemento = (T) elementos[--size];
+        elementos[size] = null;
+        return elemento;
+    }
+
+    // Retornar el último elemento sin eliminarlo
+    @SuppressWarnings("unchecked")
+    public T peek() {
+        if (isEmpty()) {
+            throw new EmptyStackException("La pila está vacía.");
+        }
+
+        return (T) elementos[size - 1];
+    }
+
+    // Tamaño de la pila
+    public int size() {
+        return size;
+    }
+
+    // Verificar si está vacía
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    // Aumentar el tamaño del arreglo
+    private void crecer() {
+        Object[] nuevo = new Object[elementos.length * 2];
+
+        for (int i = 0; i < elementos.length; i++) {
+            nuevo[i] = elementos[i];
+        }
+
+        elementos = nuevo;
+    }
+}
+
+// Clase propia para la prueba
+class Persona {
+    private String nombre;
+
+    public Persona(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+}
+
+// Clase principal
+public class Main {
+
+    public static void main(String[] args) {
+
+        // Pila de String
+        Pila<String> pilaTexto = new Pila<>();
+        pilaTexto.push("Java");
+        pilaTexto.push("Python");
+        pilaTexto.push("C#");
+
+        System.out.println("Tope String: " + pilaTexto.peek());
+        System.out.println("Pop String: " + pilaTexto.pop());
+        System.out.println("Tamaño: " + pilaTexto.size());
+
+        System.out.println();
+
+        // Pila de Integer
+        Pila<Integer> pilaNumeros = new Pila<>();
+        pilaNumeros.push(10);
+        pilaNumeros.push(20);
+        pilaNumeros.push(30);
+
+        System.out.println("Tope Integer: " + pilaNumeros.peek());
+        System.out.println("Pop Integer: " + pilaNumeros.pop());
+
+        System.out.println();
+
+        // Pila de una clase propia
+        Pila<Persona> pilaPersonas = new Pila<>();
+        pilaPersonas.push(new Persona("Juan"));
+        pilaPersonas.push(new Persona("María"));
+
+        System.out.println("Tope Persona: " + pilaPersonas.peek());
+        System.out.println("Pop Persona: " + pilaPersonas.pop());
+
+        System.out.println();
+
+        // Prueba de excepción
+        Pila<Integer> pilaVacia = new Pila<>();
+
+        try {
+            pilaVacia.pop();
+        } catch (EmptyStackException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
