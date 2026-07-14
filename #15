@@ -1,0 +1,49 @@
+// Clase genérica
+class Caja<T> {
+    private T objeto;
+
+    // Guardar un objeto
+    public void guardar(T objeto) {
+        this.objeto = objeto;
+    }
+
+    // Obtener el objeto
+    public T obtener() {
+        return objeto;
+    }
+
+    // Verificar si la caja está vacía
+    public boolean estaVacia() {
+        return objeto == null;
+    }
+}
+
+// Clase principal
+public class Main {
+    public static void main(String[] args) {
+
+        // Caja de String
+        Caja<String> cajaTexto = new Caja<>();
+        cajaTexto.guardar("Hola Mundo");
+
+        // Caja de Integer
+        Caja<Integer> cajaNumero = new Caja<>();
+        cajaNumero.guardar(100);
+
+        // Caja de Double
+        Caja<Double> cajaDecimal = new Caja<>();
+        cajaDecimal.guardar(25.75);
+
+        // Mostrar contenido
+        System.out.println("Caja<String>: " + cajaTexto.obtener());
+        System.out.println("Caja<Integer>: " + cajaNumero.obtener());
+        System.out.println("Caja<Double>: " + cajaDecimal.obtener());
+
+        // Verificar si están vacías
+        System.out.println("¿Caja<String> está vacía? " + cajaTexto.estaVacia());
+        System.out.println("¿Caja<Integer> está vacía? " + cajaNumero.estaVacia());
+        System.out.println("¿Caja<Double> está vacía? " + cajaDecimal.estaVacia());
+
+        
+    }
+}
