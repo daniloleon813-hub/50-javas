@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+import java.util.Vector;
+
+public class BenchmarkListas {
+    public static void main(String[] args) {
+
+        Vector<Integer> vector = new Vector<>();
+        long inicioVector = System.nanoTime();
+
+        for (int i = 0; i < 100000; i++) {
+            vector.add(i);
+        }
+
+        long finVector = System.nanoTime();
+
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        long inicioArrayList = System.nanoTime();
+
+        for (int i = 0; i < 100000; i++) {
+            arrayList.add(i);
+        }
+
+        long finArrayList = System.nanoTime();
+
+        System.out.println("Tiempo Vector: " + (finVector - inicioVector) + " ns");
+        System.out.println("Tiempo ArrayList: " + (finArrayList - inicioArrayList) + " ns");
+    }
+}
+
+/*
+ArrayList suele ser mas rapido porque no esta sincronizado, por lo que no
+tiene el costo adicional de controlar el acceso entre varios hilos.
+
+Vector sincroniza cada operacion mediante un monitor, lo que agrega overhead
+cuando el programa se ejecuta en un solo hilo.
+
+En codigo moderno se recomienda usar ArrayList en la mayoria de los casos.
+Vector solo conviene cuando se necesita compatibilidad con codigo antiguo
+o cuando se requiere una coleccion sincronizada, aunque hoy en dia suele
+preferirse Collections.synchronizedList() o CopyOnWriteArrayList.
