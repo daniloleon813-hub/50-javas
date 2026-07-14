@@ -1,0 +1,78 @@
+// Clase Direccion
+class Direccion {
+    private String calle;
+    private String ciudad;
+
+    // Constructor
+    public Direccion(String calle, String ciudad) {
+        this.calle = calle;
+        this.ciudad = ciudad;
+    }
+
+    // Constructor de copia
+    public Direccion(Direccion otra) {
+        this.calle = otra.calle;
+        this.ciudad = otra.ciudad;
+    }
+
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    @Override
+    public String toString() {
+        return calle + ", " + ciudad;
+    }
+}
+
+// Clase Cliente
+class Cliente {
+    private String nombre;
+    private Direccion direccion;
+
+    // Constructor
+    public Cliente(String nombre, Direccion direccion) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+    }
+
+    // Constructor de copia (clonación profunda)
+    public Cliente(Cliente otro) {
+        this.nombre = otro.nombre;
+        this.direccion = new Direccion(otro.direccion);
+    }
+
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente: " + nombre + " - Dirección: " + direccion;
+    }
+}
+
+// Clase principal
+public class Main {
+    public static void main(String[] args) {
+
+        Direccion direccion = new Direccion("Calle 10", "Bogotá");
+
+        Cliente cliente1 = new Cliente("Juan", direccion);
+
+        // Crear copia profunda
+        Cliente cliente2 = new Cliente(cliente1);
+
+        // Modificar la dirección del cliente original
+        cliente1.getDireccion().setCalle("Carrera 50");
+        cliente1.getDireccion().setCiudad("Medellín");
+
+        // Mostrar ambos clientes
+        System.out.println(cliente1);
+        System.out.println(cliente2);
+    }
+}
