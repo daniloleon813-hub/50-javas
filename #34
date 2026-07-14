@@ -1,0 +1,101 @@
+public class Fecha {
+
+    private int dia;
+    private int mes;
+    private int anio;
+
+    public Fecha(int dia, int mes, int anio) {
+        validarFecha(dia, mes, anio);
+        this.dia = dia;
+        this.mes = mes;
+        this.anio = anio;
+    }
+
+    public void setDia(int dia) {
+        validarFecha(dia, this.mes, this.anio);
+        this.dia = dia;
+    }
+
+    public void setMes(int mes) {
+        validarFecha(this.dia, mes, this.anio);
+        this.mes = mes;
+    }
+
+    public void setAnio(int anio) {
+        validarFecha(this.dia, this.mes, anio);
+        this.anio = anio;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    private void validarFecha(int dia, int mes, int anio) {
+
+        if (anio <= 0) {
+            throw new IllegalArgumentException("Anio invalido.");
+        }
+
+        if (mes < 1 || mes > 12) {
+            throw new IllegalArgumentException("Mes invalido.");
+        }
+
+        int diasMes;
+
+        switch (mes) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                diasMes = 31;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                diasMes = 30;
+                break;
+            case 2:
+                diasMes = esBisiesto(anio) ? 29 : 28;
+                break;
+            default:
+                diasMes = 0;
+        }
+
+        if (dia < 1 || dia > diasMes) {
+            throw new IllegalArgumentException("Dia invalido.");
+        }
+    }
+
+    private boolean esBisiesto(int anio) {
+        return (anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0);
+    }
+
+    public static void main(String[] args) {
+
+        try {
+            Fecha f1 = new Fecha(15, 8, 2026);
+            System.out.println(f1.getDia() + "/" + f1.getMes() + "/" + f1.getAnio());
+
+            Fecha f2 = new Fecha(29, 2, 2024);
+            System.out.println(f2.getDia() + "/" + f2.getMes() + "/" + f2.getAnio());
+
+            Fecha f3 = new Fecha(31, 4, 2026);
+            System.out.println(f3.getDia() + "/" + f3.getMes() + "/" + f3.getAnio());
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
