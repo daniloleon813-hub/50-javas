@@ -1,0 +1,60 @@
+public class Logger {
+
+    public void log(String mensaje) {
+        escribirArchivo(format("LOG", mensaje));
+    }
+
+    public void info(String mensaje) {
+        escribirArchivo(format("INFO", mensaje));
+    }
+
+    public void error(String mensaje) {
+        escribirArchivo(format("ERROR", mensaje));
+    }
+
+    protected String format(String nivel, String mensaje) {
+        return "[" + nivel + "] " + mensaje;
+    }
+
+    private void escribirArchivo(String texto) {
+        System.out.println(texto);
+    }
+}
+
+/*
+public:
+- log(), info() y error() forman la API publica del Logger y pueden ser
+  utilizados por cualquier clase.
+
+protected:
+- format() permite que las subclases cambien el formato del mensaje
+  sin modificar el funcionamiento del Logger.
+
+private:
+- escribirArchivo() es un detalle interno de implementacion.
+  Ninguna clase externa ni subclase debe acceder directamente a este metodo.
+*/
+
+
+
+
+public class LoggerJSON extends Logger {
+
+    @Override
+    protected String format(String nivel, String mensaje) {
+        return "{\"nivel\":\"" + nivel + "\",\"mensaje\":\"" + mensaje + "\"}";
+    }
+
+    public static void main(String[] args) {
+
+        Logger logger = new Logger();
+        logger.log("Sistema iniciado");
+        logger.info("Conexion exitosa");
+        logger.error("Error al guardar");
+
+        LoggerJSON loggerJson = new LoggerJSON();
+        loggerJson.log("Sistema iniciado");
+        loggerJson.info("Conexion exitosa");
+        loggerJson.error("Error al guardar");
+    }
+}
