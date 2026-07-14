@@ -1,0 +1,32 @@
+package util;
+
+class Helper {
+
+    void saludar() {
+        System.out.println("Hola desde Helper");
+    }
+}
+
+package util;
+
+public class Acceso {
+
+    public static void main(String[] args) {
+
+        Helper helper = new Helper();
+        helper.saludar();
+    }
+}
+
+package app;
+
+import util.Helper;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Helper helper = new Helper();
+        helper.saludar();
+    }
+}
