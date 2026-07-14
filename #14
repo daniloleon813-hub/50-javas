@@ -1,0 +1,57 @@
+// Clase Motor
+class Motor {
+    private int rpm;
+
+    public Motor() {
+        rpm = 0;
+    }
+
+    public void arrancar() {
+        rpm = 800; // RPM iniciales al arrancar
+        System.out.println("Motor arrancado.");
+    }
+
+    public void detener() {
+        rpm = 0;
+        System.out.println("Motor detenido.");
+    }
+
+    public int obtenerRPM() {
+        return rpm;
+    }
+}
+
+// Clase Coche (delegación)
+class Coche {
+    private Motor motor;
+
+    public Coche() {
+        motor = new Motor();
+    }
+
+    public void encender() {
+        motor.arrancar(); // Delega la acción al motor
+    }
+
+    public void apagar() {
+        motor.detener(); // Delega la acción al motor
+    }
+
+    public void mostrarRPM() {
+        System.out.println("RPM actuales: " + motor.obtenerRPM());
+    }
+}
+
+// Clase principal
+public class Main {
+    public static void main(String[] args) {
+
+        Coche coche = new Coche();
+
+        coche.encender();
+        coche.mostrarRPM();
+
+        coche.apagar();
+        coche.mostrarRPM();
+    }
+}
