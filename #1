@@ -1,0 +1,37 @@
+public class Main {
+
+    static class Lampara {
+        private boolean encendida;
+
+        public Lampara() {
+            encendida = false;
+        }
+
+        public void encender() {
+            if (!encendida) {
+                encendida = true;
+            }
+        }
+
+        public void apagar() {
+            encendida = false;
+        }
+
+        public boolean estaEncendida() {
+            return encendida;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Lampara l = new Lampara();
+
+        System.out.println(l.estaEncendida());
+
+        l.encender();
+        System.out.println(l.estaEncendida());
+
+        l.apagar();
+        System.out.println(l.estaEncendida());
+    }
+}
