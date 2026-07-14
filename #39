@@ -1,0 +1,44 @@
+package banco;
+
+public class Cuenta {
+
+    protected double saldo;
+
+    public Cuenta(double saldo) {
+        this.saldo = saldo;
+    }
+}
+
+#2
+package ahorro;
+
+import banco.Cuenta;
+
+public class CuentaAhorros extends Cuenta {
+
+    public CuentaAhorros(double saldo) {
+        super(saldo);
+    }
+
+    public void mostrarSaldo() {
+        System.out.println("Saldo: " + saldo);
+    }
+
+    public static void main(String[] args) {
+
+        CuentaAhorros cuenta = new CuentaAhorros(1500.50);
+        cuenta.mostrarSaldo();
+    }
+}
+
+/*
+Usar protected permite que las subclases accedan directamente al atributo
+saldo, incluso si estan en otro paquete.
+
+Esto puede ser problematico porque rompe parcialmente el encapsulamiento.
+Si la clase Cuenta cambia la forma en que maneja el saldo, las subclases
+que acceden directamente al atributo tambien tendran que modificarse.
+
+Por eso, en muchos casos es preferible mantener los atributos private y
+proporcionar metodos getter y setter para controlar el acceso.
+*/
