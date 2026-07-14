@@ -1,0 +1,77 @@
+import java.util.ArrayList;
+
+abstract class Empleado {
+    protected String nombre;
+
+    public Empleado(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    // Método abstracto
+    public abstract double calcularSalario();
+}
+
+// Subclase EmpleadoFijo
+class EmpleadoFijo extends Empleado {
+    private double salario;
+
+    public EmpleadoFijo(String nombre, double salario) {
+        super(nombre);
+        this.salario = salario;
+    }
+
+    @Override
+    public double calcularSalario() {
+        return salario;
+    }
+}
+
+// Subclase EmpleadoPorComision
+class EmpleadoPorComision extends Empleado {
+    private double salarioBase;
+    private double ventas;
+    private double porcentaje;
+
+    public EmpleadoPorComision(String nombre, double salarioBase, double ventas, double porcentaje) {
+        super(nombre);
+        this.salarioBase = salarioBase;
+        this.ventas = ventas;
+        this.porcentaje = porcentaje;
+    }
+
+    @Override
+    public double calcularSalario() {
+        return salarioBase + (ventas * porcentaje);
+    }
+}
+
+// Clase principal
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Empleado> empleados = new ArrayList<>();
+
+        empleados.add(new EmpleadoFijo("Juan", 2500000));
+        empleados.add(new EmpleadoFijo("María", 3000000));
+        empleados.add(new EmpleadoPorComision("Carlos", 1200000, 5000000, 0.10));
+        empleados.add(new EmpleadoPorComision("Ana", 1000000, 3000000, 0.15));
+
+        double nominaTotal = 0;
+
+        System.out.println("NÓMINA DE EMPLEADOS");
+        System.out.println("--------------------------");
+
+        for (Empleado empleado : empleados) {
+            double salario = empleado.calcularSalario();
+            System.out.println(empleado.getNombre() + " -> $" + salario);
+            nominaTotal += salario;
+        }
+
+        System.out.println("--------------------------");
+        System.out.println("Nómina total: $" + nominaTotal);
+    }
+}
