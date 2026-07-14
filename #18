@@ -1,0 +1,51 @@
+// Clase Punto
+class Punto {
+    private int x;
+    private int y;
+
+    // Constructor normal
+    public Punto(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    // Constructor de copia
+    public Punto(Punto otro) {
+        this.x = otro.x;
+        this.y = otro.y;
+    }
+
+    // Métodos para modificar los atributos
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ")";
+    }
+}
+
+// Clase principal
+public class Main {
+    public static void main(String[] args) {
+
+        // Crear el punto original
+        Punto original = new Punto(5, 8);
+
+        // Crear una copia usando el constructor de copia
+        Punto copia = new Punto(original);
+
+        // Modificar el punto original
+        original.setX(20);
+        original.setY(30);
+
+        // Mostrar ambos puntos
+        System.out.println("Punto original: " + original);
+        System.out.println("Punto copia: " + copia);
+    }
+}
