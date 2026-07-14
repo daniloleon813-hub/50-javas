@@ -1,0 +1,42 @@
+public class Main {
+
+    static class Perro {
+
+        String nombre;
+        String raza;
+
+        public Perro(String nombre, String raza) {
+            this.nombre = nombre;
+            this.raza = raza;
+        }
+
+        public void emitirSonido() {
+            System.out.println(nombre + " hace: Guau!");
+        }
+
+        public void ladrar() {
+            System.out.println(nombre + " está ladrando.");
+        }
+
+        public void mostrarDatos() {
+            System.out.println("Nombre: " + nombre);
+            System.out.println("Raza: " + raza);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Perro perro1 = new Perro("Max", "Labrador");
+        Perro perro2 = new Perro("Luna", "Pastor Alemán");
+
+        perro1.mostrarDatos();
+        perro1.emitirSonido();
+        perro1.ladrar();
+
+        System.out.println();
+
+        perro2.mostrarDatos();
+        perro2.emitirSonido();
+        perro2.ladrar();
+    }
+}
