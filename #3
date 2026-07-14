@@ -1,0 +1,51 @@
+public class Main {
+
+    static class CuentaBancaria {
+
+        private double saldo;
+        private double minimoRetenido;
+
+        public CuentaBancaria(double saldo) {
+            this.saldo = saldo;
+            minimoRetenido = 0;
+        }
+
+        public void setMinimoRetenido(double minimo) {
+            if (minimo >= 0)
+                minimoRetenido = minimo;
+        }
+
+        public void depositar(double monto) {
+            saldo += monto;
+        }
+
+        public void retirar(double monto) {
+            if (saldo - monto >= minimoRetenido)
+                saldo -= monto;
+            else
+                System.out.println("No se puede retirar.");
+        }
+
+        public double getSaldo() {
+            return saldo;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        CuentaBancaria cuenta = new CuentaBancaria(1000);
+
+        cuenta.setMinimoRetenido(200);
+
+        System.out.println("Saldo inicial: " + cuenta.getSaldo());
+
+        cuenta.depositar(500);
+        System.out.println("Saldo: " + cuenta.getSaldo());
+
+        cuenta.retirar(1000);
+        System.out.println("Saldo: " + cuenta.getSaldo());
+
+        cuenta.retirar(400);
+        System.out.println("Saldo final: " + cuenta.getSaldo());
+    }
+}
