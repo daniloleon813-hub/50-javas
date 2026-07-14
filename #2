@@ -1,0 +1,39 @@
+public class Main {
+
+    static class Temperatura {
+        private double celsius;
+
+        public void setCelsius(double c) {
+            if (c >= -273.15)
+                celsius = c;
+        }
+
+        public double getCelsius() {
+            return celsius;
+        }
+
+        public void setFahrenheit(double f) {
+            double c = (f - 32) * 5 / 9;
+            if (c >= -273.15)
+                celsius = c;
+        }
+
+        public double getFahrenheit() {
+            return (celsius * 9 / 5) + 32;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Temperatura t = new Temperatura();
+
+        t.setCelsius(25);
+
+        System.out.println("Celsius: " + t.getCelsius());
+        System.out.println("Fahrenheit: " + t.getFahrenheit());
+
+        t.setFahrenheit(68);
+
+        System.out.println("Celsius: " + t.getCelsius());
+    }
+}
