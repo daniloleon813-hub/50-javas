@@ -1,0 +1,27 @@
+// Clase Persona
+class Persona {
+    String nombre;
+
+    public Persona(String nombre) {
+        this.nombre = nombre;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        // Se crea un objeto Persona
+        Persona persona1 = new Persona("luis");
+
+        // persona2 apunta al mismo objeto que persona1
+        Persona persona2 = persona1;
+
+        // Se modifica el nombre usando persona2
+        persona2.nombre = "juan";
+
+        // Se imprimen ambas variables
+        System.out.println("Persona 1: " + persona1.nombre);
+        System.out.println("Persona 2: " + persona2.nombre);
+
+    }
+}
