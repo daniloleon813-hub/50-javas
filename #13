@@ -1,0 +1,66 @@
+import java.util.ArrayList;
+
+// Interfaz
+interface Dibujable {
+    void dibujar();
+    double obtenerArea();
+}
+
+// Clase Cuadrado
+class Cuadrado implements Dibujable {
+    private double lado;
+
+    public Cuadrado(double lado) {
+        this.lado = lado;
+    }
+
+    @Override
+    public void dibujar() {
+        System.out.println("Dibujando un cuadrado.");
+    }
+
+    @Override
+    public double obtenerArea() {
+        return lado * lado;
+    }
+}
+
+// Clase Triangulo
+class Triangulo implements Dibujable {
+    private double base;
+    private double altura;
+
+    public Triangulo(double base, double altura) {
+        this.base = base;
+        this.altura = altura;
+    }
+
+    @Override
+    public void dibujar() {
+        System.out.println("Dibujando un triángulo.");
+    }
+
+    @Override
+    public double obtenerArea() {
+        return (base * altura) / 2;
+    }
+}
+
+// Clase principal
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Dibujable> figuras = new ArrayList<>();
+
+        figuras.add(new Cuadrado(5));
+        figuras.add(new Triangulo(6, 4));
+        figuras.add(new Cuadrado(3));
+        figuras.add(new Triangulo(8, 5));
+
+        for (Dibujable figura : figuras) {
+            figura.dibujar();
+            System.out.println("Área: " + figura.obtenerArea());
+            System.out.println("----------------------");
+        }
+    }
+}
