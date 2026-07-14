@@ -1,0 +1,41 @@
+public class Main {
+
+    static class Empleado {
+
+        protected String nombre;
+        protected double salarioBase;
+
+        public Empleado(String nombre, double salarioBase) {
+            this.nombre = nombre;
+            this.salarioBase = salarioBase;
+        }
+
+        public double calcularSalario() {
+            return salarioBase;
+        }
+    }
+
+    static class EmpleadoConBonus extends Empleado {
+
+        private double bonus;
+
+        public EmpleadoConBonus(String nombre, double salarioBase, double bonus) {
+            super(nombre, salarioBase);
+            this.bonus = bonus;
+        }
+
+        @Override
+        public double calcularSalario() {
+            return salarioBase + bonus;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Empleado empleado = new Empleado("Juan", 2000);
+        EmpleadoConBonus empleado2 = new EmpleadoConBonus("Ana", 2000, 500);
+
+        System.out.println("Salario de Juan: " + empleado.calcularSalario());
+        System.out.println("Salario de Ana: " + empleado2.calcularSalario());
+    }
+}
