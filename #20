@@ -1,0 +1,35 @@
+public class Main {
+
+    public static void main(String[] args) {
+
+        // Strings creados con literales
+        String texto1 = "hola";
+        String texto2 = "hola";
+
+        // Strings creados con new
+        String texto3 = new String("hola");
+        String texto4 = new String("hola");
+
+        // Comparaciones con ==
+        System.out.println("texto1 == texto2: " + (texto1 == texto2));
+        System.out.println("texto3 == texto4: " + (texto3 == texto4));
+
+        // Comparaciones con equals()
+        System.out.println("texto1.equals(texto2): " + texto1.equals(texto2));
+        System.out.println("texto3.equals(texto4): " + texto3.equals(texto4));
+
+        /*
+         * == compara si ambas variables apuntan al mismo objeto en memoria.
+         * equals() compara el contenido de los Strings.
+         *
+         * Los literales ("hola") utilizan el String Pool, por eso
+         * texto1 y texto2 comparten la misma instancia y == devuelve true.
+         *
+         * En cambio, new String("hola") crea un objeto nuevo en el heap
+         * cada vez que se ejecuta, por eso texto3 == texto4 devuelve false.
+         *
+         * equals() devuelve true en ambos casos porque el contenido de
+         * las cadenas es exactamente el mismo: "hola".
+         */
+    }
+}
