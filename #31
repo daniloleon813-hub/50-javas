@@ -1,0 +1,28 @@
+import java.util.Vector;
+import java.util.Enumeration;
+import java.util.Iterator;
+
+public class VectorEjemplo {
+    public static void main(String[] args) {
+
+        Vector<String> colores = new Vector<>();
+
+        colores.add("Rojo");
+        colores.add("Azul");
+        colores.add("Verde");
+        colores.add("Amarillo");
+        colores.add("Negro");
+
+        Enumeration<String> e = colores.elements();
+
+        while (e.hasMoreElements()) {
+            System.out.println(e.nextElement());
+        }
+
+        Iterator<String> it = colores.iterator();
+
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+    }
+}
